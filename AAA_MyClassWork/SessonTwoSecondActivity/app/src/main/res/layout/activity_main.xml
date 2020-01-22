@@ -5,37 +5,31 @@
     android:layout_height="wrap_content"
     >
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvl"
-        android:text="REPORT PROBLEM!"
+        android:text="@string/app_name"
         android:textSize="15pt"
         android:textColor="@color/colorAccent"
         />
 
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/et1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/panel1"
+        >
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Clear"
             android:id="@+id/btn1"
@@ -43,14 +37,26 @@
 
         <Button
             android:id="@+id/btn2"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Ok"
             />
 
+    </LinearLayout>
 
-        </LinearLayout>
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_above="@id/panel1"
+        android:hint="@string/initialMessage"
+        />
 
     </RelativeLayout>
+
+
+
 </LinearLayout>
