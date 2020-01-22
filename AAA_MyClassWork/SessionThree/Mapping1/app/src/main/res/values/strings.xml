@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Mapping1</string>
+    <string name="Lat">Latitude: </string>
+    <string name="Long">Longitude: </string>
+    <string name="Start">Go!</string>
+</resources>
