@@ -31,7 +31,7 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/panel1"
-                android:inputType="numberDecimal" />
+                android:inputType="numberSigned|numberDecimal" />
 
         </LinearLayout>
 
@@ -57,7 +57,7 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/panel2"
-                android:inputType="numberDecimal" />
+                android:inputType="numberSigned|numberDecimal" />
 
 
         </LinearLayout>
