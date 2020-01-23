@@ -40,46 +40,59 @@ public class MainActivity extends AppCompatActivity {
         mv.getController().setCenter(new GeoPoint(51.05, -0.72));
     }
 
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater=getMenuInflater();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if(item.getItemId() == R.id.choosemap)
-        {
-            Intent intent = new Intent(this,MapChooseActivity.class);
-            startActivityForResult(intent,0);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.choosemap) {
+            Intent intent = new Intent(this, MapChooseActivity.class);
+            startActivityForResult(intent, 0);
+            // react to the menu item being selected...
+            return true;
+        }
+        if (item.getItemId() == R.id.setcoordinates) {
+            Intent intent = new Intent(this, SetCoordinatesActivity.class);
+            startActivityForResult(intent, 1);
             // react to the menu item being selected...
             return true;
         }
         return false;
     }
 
-    protected void onActivityResult(int requestCode,int resultCode,Intent intent)
-    {
-
-        if(requestCode==0)
-        {
-
-            if (resultCode==RESULT_OK)
-            {
-                Bundle extras=intent.getExtras();
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                Bundle extras = intent.getExtras();
                 boolean hikebikemap = extras.getBoolean("com.example.hikebikemap");
-                if(hikebikemap==true)
-                {
+                if (hikebikemap == true) {
                     mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
-                }
-                else
-                {
+                } else {
                     mv.setTileSource(TileSourceFactory.MAPNIK);
+                }
+
+            }
+        } else if (requestCode == 1) {
+            if (resultCode == RESULT_FIRST_USER) {
+                Bundle extras2 = intent.getExtras();
+                boolean go = extras2.getBoolean("com.example.go");
+                double longitude = extras2.getDouble("com.example.longitude");
+                double latitude = extras2.getDouble("com.example.latitude");
+                if (go == true) {
+                    mv = findViewById(R.id.map1);
+                    mv.setBuiltInZoomControls(true);
+                    mv.getController().setZoom(16);
+                    // southampton 50.9076, -1.4007
+                    // fenhurst 51.05, -0.72
+                    // home 50.9229, -1.3508
+                    mv.getController().setCenter(new GeoPoint(latitude, longitude));
                 }
             }
         }
     }
-
-
 }
+
+
+
