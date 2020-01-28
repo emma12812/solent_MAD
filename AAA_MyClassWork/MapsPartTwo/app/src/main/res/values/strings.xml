@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mapping1</string>
+    <string name="choosemap">Choose Map</string>
+    <string name="hikebikemapview">Hike / Bike map view</string>
+    <string name="regularview">Regular view</string>
+    <string name="selectmap">Select Map</string>
+    <string name="Long">Longitude</string>
+    <string name="Lat">Latitude</string>
+    <string name="Start">Go!</string>
+    <string name="selectcoordinates">Select Coordinates</string>
+</resources>
