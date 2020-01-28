@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/panel3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv3"
+                android:text="@string/Lat"
+                android:textSize="12pt"
+                android:layout_weight="0.5"
+                />
+
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/et3"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/panel3"
+                android:inputType="numberSigned|numberDecimal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@id/panel3"
+            android:id="@+id/panel4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv4"
+                android:text="@string/Long"
+                android:textSize="12pt"
+                android:layout_weight="0.5"
+                />
+
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/et4"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/panel4"
+                android:inputType="numberSigned|numberDecimal" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Start"
+            android:layout_below="@id/panel4"/>
+
+    </RelativeLayout>
+</LinearLayout>
