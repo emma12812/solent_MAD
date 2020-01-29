@@ -8,4 +8,7 @@
     <string name="Lat">Latitude</string>
     <string name="Start">Go!</string>
     <string name="selectcoordinates">Select Coordinates</string>
+    <string name="Zoom"> Zoom Level</string>
+    <string name="setpreferences"> Set Preferences</string>
+    <string name="save"> Save </string>
 </resources>

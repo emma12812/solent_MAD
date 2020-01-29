@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".SetCoordinatesActivity" android:label="@string/selectcoordinates">
         </activity>
+        <activity android:name=".MyPrefsActivity" android:label="@string/setpreferences">
+        </activity>
     </application>
 
 </manifest>

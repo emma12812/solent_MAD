@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
             // react to the menu item being selected...
             return true;
         }
+        if (item.getItemId() == R.id.preferences) {
+            Intent intent = new Intent(this, MyPrefsActivity.class );
+            startActivityForResult(intent, 2);
+        }
         return false;
     }
 
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 if (go == true) {
                     mv = findViewById(R.id.map1);
                     mv.setBuiltInZoomControls(true);
-                    mv.getController().setZoom(16);
+                    mv.getController().setZoom(16.0);
                     // southampton 50.9076, -1.4007
                     // fenhurst 51.05, -0.72
                     // home 50.9229, -1.3508
