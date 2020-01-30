@@ -50,18 +50,16 @@ public class MainActivity extends AppCompatActivity {
                 latitude = Double.parseDouble((prefs.getString("lat", Constants.DEFAULT_LAT.toString())));
                 longitude = Double.parseDouble(prefs.getString("lon", Constants.DEFAULT_LON.toString()));
                 zoom = Double.parseDouble((prefs.getString("zoom", Constants.DEFAULT_ZOOM.toString())));
+
+                mv = findViewById(R.id.map1);
+                mv.getController().setZoom(zoom);
+                mv.getController().setCenter(new GeoPoint(latitude, longitude));
+
             } catch (Exception ex){
                  popupMessage("invalid default preferenced entry: "+ex.getMessage());
             }
 
 
-
-        mv = (MapView) findViewById(R.id.map1);
-        mv.getController().setZoom(16.0);
-        // southampton 50.9076, -1.4007
-        // fenhurst 51.05, -0.72
-        // home 50.9229, -1.3508
-        mv.getController().setCenter(new GeoPoint(51.05, -0.72));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -138,6 +136,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
