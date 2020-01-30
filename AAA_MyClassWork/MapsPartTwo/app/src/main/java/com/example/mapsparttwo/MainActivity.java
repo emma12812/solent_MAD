@@ -1,5 +1,6 @@
 package com.example.mapsparttwo;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import org.osmdroid.views.MapView;
 public class MainActivity extends AppCompatActivity {
 
     MapView mv;
+    private Double latitude = Constants.DEFAULT_LAT;
+    private Double longitude = Constants.DEFAULT_LON;
+    private Double zoom = Constants.DEFAULT_ZOOM;
+    private String mapCode = null;
 
     /**
      * Called when the activity is first created.
@@ -25,14 +30,33 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        if (savedInstanceState != null) {
+            mapCode = savedInstanceState.getString ("com.example.mapcode");
+        }
+        if(mapCode==null) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            mapCode = prefs.getString("mapPref", Constants.DEFAULT_MAP);
+        }
+
         // This line sets the user agent, a requirement to download OSM maps
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
         setContentView(R.layout.activity_main);
 
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+            try{
+                latitude = Double.parseDouble((prefs.getString("lat", Constants.DEFAULT_LAT.toString())));
+                longitude = Double.parseDouble(prefs.getString("lon", Constants.DEFAULT_LON.toString()));
+                zoom = Double.parseDouble((prefs.getString("zoom", Constants.DEFAULT_ZOOM.toString())));
+            } catch (Exception ex){
+                 popupMessage("invalid default preferenced entry: "+ex.getMessage());
+            }
+
+
+
         mv = (MapView) findViewById(R.id.map1);
-
-
         mv.getController().setZoom(16.0);
         // southampton 50.9076, -1.4007
         // fenhurst 51.05, -0.72
@@ -66,13 +90,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void onResume() {
-        super.onResume();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        double lat = Double.parseDouble(prefs.getString("lat", "50.9"));
-        double lon = Double.parseDouble(prefs.getString("lon", "-1.4"));
-    }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
@@ -101,7 +118,48 @@ public class MainActivity extends AppCompatActivity {
                     mv.getController().setCenter(new GeoPoint(latitude, longitude));
                 }
             }
+        } else if (requestCode == 2){
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            Double lat;
+            Double lon;
+            Double zoom;
+
+            try{
+                lat = Double.parseDouble((prefs.getString("lat", Constants.DEFAULT_LAT.toString())));
+                lon = Double.parseDouble(prefs.getString("lon", Constants.DEFAULT_LON.toString()));
+                zoom = Double.parseDouble((prefs.getString("zoom", Constants.DEFAULT_ZOOM.toString())));
+
+                mv = findViewById(R.id.map1);
+                mv.getController().setZoom(zoom);
+                mv.getController().setCenter(new GeoPoint(lat, lon));
+            } catch (Exception ex){
+                popupMessage("invalid default preferenced entry: "+ex.getMessage());
+            }
+
         }
+
     }
+
+    @Override
+    public void onDestroy()  {
+        super.onDestroy();
+        // save the chosen map
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString ("com.example.mapcode", mapCode);
+        editor.commit();
+    }
+
+    @Override
+    public void onSaveInstanceState (Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("com.example.mapcode", mapCode);
+    }
+
+    private void popupMessage(String message){
+        new AlertDialog.Builder(this).setPositiveButton("OK", null).setMessage(message).show();
+    }
+
+
 }
 
