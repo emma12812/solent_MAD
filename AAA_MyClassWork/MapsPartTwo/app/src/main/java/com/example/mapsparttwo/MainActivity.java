@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Double zoom = Constants.DEFAULT_ZOOM;
     private String mapCode = null;
 
+
     /**
      * Called when the activity is first created.
      */
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if(mapCode==null) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            mapCode = prefs.getString("mapPref", Constants.DEFAULT_MAP);
+            mapCode = prefs.getString("type", Constants.DEFAULT_MAP);
         }
 
         // This line sets the user agent, a requirement to download OSM maps
@@ -50,10 +51,17 @@ public class MainActivity extends AppCompatActivity {
                 latitude = Double.parseDouble((prefs.getString("lat", Constants.DEFAULT_LAT.toString())));
                 longitude = Double.parseDouble(prefs.getString("lon", Constants.DEFAULT_LON.toString()));
                 zoom = Double.parseDouble((prefs.getString("zoom", Constants.DEFAULT_ZOOM.toString())));
-
+                mapCode = prefs.getString("type", Constants.NORMAL_MAP);
                 mv = findViewById(R.id.map1);
                 mv.getController().setZoom(zoom);
                 mv.getController().setCenter(new GeoPoint(latitude, longitude));
+
+                if (Constants.CYCLE_MAP.equals(mapCode)){
+                    mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
+                }
+                else {
+                    mv.setTileSource(TileSourceFactory.MAPNIK);
+                }
 
             } catch (Exception ex){
                  popupMessage("invalid default preferenced entry: "+ex.getMessage());
@@ -121,15 +129,23 @@ public class MainActivity extends AppCompatActivity {
             Double lat;
             Double lon;
             Double zoom;
+            String map;
 
             try{
                 lat = Double.parseDouble((prefs.getString("lat", Constants.DEFAULT_LAT.toString())));
                 lon = Double.parseDouble(prefs.getString("lon", Constants.DEFAULT_LON.toString()));
                 zoom = Double.parseDouble((prefs.getString("zoom", Constants.DEFAULT_ZOOM.toString())));
-
+                map = prefs.getString("type", Constants.DEFAULT_MAP);
                 mv = findViewById(R.id.map1);
                 mv.getController().setZoom(zoom);
                 mv.getController().setCenter(new GeoPoint(lat, lon));
+                if (Constants.CYCLE_MAP.equals(mapCode)){
+                    mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
+                }
+                else {
+                    mv.setTileSource(TileSourceFactory.MAPNIK);
+                }
+
             } catch (Exception ex){
                 popupMessage("invalid default preferenced entry: "+ex.getMessage());
             }

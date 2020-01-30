@@ -3,4 +3,5 @@
     <EditTextPreference android:key="lat" android:defaultValue="50.9" android:title="Latitude" android:summary="Latitude to show the map at initially." />
     <EditTextPreference android:key="lon" android:defaultValue="-1.4" android:title="Longitude" android:summary="Longitude to show the map at initially." />
     <EditTextPreference android:key="zoom" android:defaultValue="16.0" android:title="Zoom" android:summary="Set the Zoom level of the map" />
+    <ListPreference android:key="type" android:title="Map Type" android:summary="Choose your Map type." android:entries="@array/mapTypes" android:entryValues="@array/mapCodes" />
 </PreferenceScreen>
