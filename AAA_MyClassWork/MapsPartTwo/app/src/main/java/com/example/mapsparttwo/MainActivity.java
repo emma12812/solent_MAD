@@ -55,11 +55,10 @@ public class MainActivity extends AppCompatActivity {
                 mv = findViewById(R.id.map1);
                 mv.getController().setZoom(zoom);
                 mv.getController().setCenter(new GeoPoint(latitude, longitude));
-
                 if (Constants.CYCLE_MAP.equals(mapCode)){
                     mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
                 }
-                else {
+                else if (Constants.NORMAL_MAP.equals(mapCode)) {
                     mv.setTileSource(TileSourceFactory.MAPNIK);
                 }
 
@@ -135,14 +134,14 @@ public class MainActivity extends AppCompatActivity {
                 lat = Double.parseDouble((prefs.getString("lat", Constants.DEFAULT_LAT.toString())));
                 lon = Double.parseDouble(prefs.getString("lon", Constants.DEFAULT_LON.toString()));
                 zoom = Double.parseDouble((prefs.getString("zoom", Constants.DEFAULT_ZOOM.toString())));
-                map = prefs.getString("type", Constants.DEFAULT_MAP);
+                mapCode = prefs.getString("type", Constants.DEFAULT_MAP);
                 mv = findViewById(R.id.map1);
                 mv.getController().setZoom(zoom);
                 mv.getController().setCenter(new GeoPoint(lat, lon));
                 if (Constants.CYCLE_MAP.equals(mapCode)){
                     mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
                 }
-                else {
+                else if (Constants.NORMAL_MAP.equals(mapCode)) {
                     mv.setTileSource(TileSourceFactory.MAPNIK);
                 }
 

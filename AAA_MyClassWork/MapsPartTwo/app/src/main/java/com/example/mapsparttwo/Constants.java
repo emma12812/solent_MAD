@@ -11,8 +11,8 @@ public interface Constants {
     public static final Double DEFAULT_LON = -0.72;
     public static final Double DEFAULT_ZOOM = 16.0;
 
-    public static final String  NORMAL_MAP="normal";
-    public static final String  CYCLE_MAP="cycle";
+    public static final String  NORMAL_MAP="R";
+    public static final String  CYCLE_MAP="BH";
 
     public static final String  DEFAULT_MAP = NORMAL_MAP;
 }
