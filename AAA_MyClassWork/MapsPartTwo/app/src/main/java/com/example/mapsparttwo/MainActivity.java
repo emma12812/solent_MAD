@@ -92,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MyPrefsActivity.class );
             startActivityForResult(intent, 2);
         }
+        if (item.getItemId() == R.id.lists){
+            Intent intent = new Intent(this, ListsActivity.class);
+            startActivityForResult(intent, 3);
+        }
         return false;
     }
 

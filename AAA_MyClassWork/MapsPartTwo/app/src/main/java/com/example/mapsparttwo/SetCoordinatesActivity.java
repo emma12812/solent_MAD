@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 
+
 public class SetCoordinatesActivity extends AppCompatActivity implements View.OnClickListener
 {
 
