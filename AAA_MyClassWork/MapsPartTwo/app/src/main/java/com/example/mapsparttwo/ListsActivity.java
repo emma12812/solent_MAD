@@ -3,6 +3,7 @@ package com.example.mapsparttwo;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +16,31 @@ import android.widget.TextView;
 public class ListsActivity extends ListActivity {
 
     String[] types, details;
+    private String mapCode = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        types = new String[]{"Hike Bike Map", "Normal Map"};
-        details = new String[]{"Map showing bike routes , Useful for bikers", "Typical map found, Useful for normal use"};
+        types = new String[]{ "Normal Map", "Hike Bike Map"};
+        details = new String[]{ "Typical map found", "Map showing bike routes"};
         MyAdapter adapter = new MyAdapter();
         setListAdapter(adapter);
     }
 
     public void onListItemClick(ListView lv, View view, int index, long id) {
         // handle list item selection
+        Intent intent = new Intent();
+        Bundle bundle=new Bundle();
+
+        String[] mapcode = {Constants.DEFAULT_MAP, Constants.CYCLE_MAP };
+
+        bundle.putString("com.example.mapcode",mapcode[index]);
+        intent.putExtras(bundle);
+        setResult(RESULT_OK,intent);
+        finish();
+    }
+
+    private void popupMessage(String message) {
+        new AlertDialog.Builder(this).setPositiveButton("OK", null).setMessage(message).show();
     }
 
     public class MyAdapter extends ArrayAdapter<String> {

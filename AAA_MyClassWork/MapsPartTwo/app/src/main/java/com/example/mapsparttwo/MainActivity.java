@@ -94,22 +94,22 @@ public class MainActivity extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.lists){
             Intent intent = new Intent(this, ListsActivity.class);
-            startActivityForResult(intent, 3);
+            startActivityForResult(intent, 0);
         }
         return false;
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 0) {
+            // result from choose map
             if (resultCode == RESULT_OK) {
                 Bundle extras = intent.getExtras();
-                boolean hikebikemap = extras.getBoolean("com.example.hikebikemap");
-                if (hikebikemap == true) {
-                    mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
-                } else {
+                mapCode = extras.getString("com.example.mapcode");
+                if (Constants.NORMAL_MAP.equals(mapCode)) {
                     mv.setTileSource(TileSourceFactory.MAPNIK);
+                } else {
+                    mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
                 }
-
             }
         } else if (requestCode == 1) {
             if (resultCode == RESULT_FIRST_USER) {

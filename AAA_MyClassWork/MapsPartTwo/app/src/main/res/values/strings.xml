@@ -11,4 +11,5 @@
     <string name="Zoom"> Zoom Level</string>
     <string name="setpreferences"> Set Preferences</string>
     <string name="save"> Save </string>
+    <string name="selectfromlist"> Select From Lists</string>
 </resources>
