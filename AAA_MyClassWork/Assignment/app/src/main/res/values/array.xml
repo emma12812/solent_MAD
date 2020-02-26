@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="TypesOfPlace">
+        <item>Hotel</item>
+        <item>Hostel</item>
+        <item>BnB</item>
+        <item>Guest House</item>
+        <item>Apartment</item>
+    </string-array>
+
+</resources>

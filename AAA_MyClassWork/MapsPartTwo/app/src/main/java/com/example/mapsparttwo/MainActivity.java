@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.choosemap) {
             Intent intent = new Intent(this, MapChooseActivity.class);
-            startActivityForResult(intent, 0);
+            //startActivityForResult(intent, 0);
             // react to the menu item being selected...
             return true;
         }

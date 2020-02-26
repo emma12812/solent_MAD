@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <!-- TextView to show title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:text="@string/addplace"
+        android:textSize="15pt"
+        android:textColor="@color/colorAccent"
+        />
+
+    <!-- Relative Layout for the layout of the page -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Linear Layout to allow textview and textbox to occupy equal space -->
+        <LinearLayout
+            android:id="@+id/namePanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textSize="8pt"
+                android:text="Name Of Place:" />
+
+            <EditText
+                android:id="@+id/etxtName"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textSize="8pt"
+                android:hint="Enter Name Of Place"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/typePanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/namePanel">
+
+            <TextView
+                android:id="@+id/txtType"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textSize="8pt"
+                android:text="Type Of Place:" />
+
+            <Spinner
+                android:id="@+id/typeSpinner"
+                android:layout_weight="0.6"
+                android:layout_height="wrap_content"
+                android:layout_width="0px"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
